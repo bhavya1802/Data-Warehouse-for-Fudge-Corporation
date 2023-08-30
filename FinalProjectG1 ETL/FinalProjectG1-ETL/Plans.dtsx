@@ -1,0 +1,1826 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/13/2023 2:04:56 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IST-LD-H020-08"
+  DTS:CreatorName="AD\bhshah"
+  DTS:DTSID="{9DAFAC6D-427E-4258-85D7-969D185BB2EA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Plans"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{084504E2-9B69-4018-91A8-914C3AFA9BE3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_ca1_stage 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3BB21A56-24E5-4C43-8021-A3CAA163F3AC}"
+      DTS:ObjectName="ist-cs-dw1.ad.syr.edu.ist722_hhkhan_ca1_stage 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ist-cs-dw1.ad.syr.edu;Initial Catalog=ist722_hhkhan_ca1_stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF - Stage to FudgeflixPlans"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E19F00A7-E695-4C04-B873-61761EFE3626}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Stage to FudgeflixPlans"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DC - Name,Supplier,Source"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Inputs[Derived Column Input].Columns[plan_current]"
+                      cachedDataType="bool"
+                      cachedName="plan_current"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_current]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Source]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Source]"
+                      name="Source"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"fudgeflix"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"fudgeflix"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Category]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Category]"
+                      name="Category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)"MoviePlans"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)"MoviePlans"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[SupplierName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[SupplierName]"
+                      name="SupplierName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)"FudgeFlix"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)"FudgeFlix"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[ActiveYN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[ActiveYN]"
+                      name="ActiveYN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_current]} ? "Y" : "N"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">plan_current ? "Y" : "N"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to FudgeflixPlans\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to FudgeflixPlans\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Derived Column.Outputs[Derived Column Output].Columns[RowIsCurrent]"
+                      dataType="bool"
+                      description="RowIsCurrent"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Derived Column.Outputs[Derived Column Output].Columns[RowIsCurrent]"
+                      name="RowIsCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_BOOL)("0")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_BOOL)("0")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to FudgeflixPlans\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Outputs[Derived Column Output].Columns[RowIsCurrent]"
+                      dataType="bool"
+                      description="RowIsCurrent"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Outputs[Derived Column Output].Columns[RowIsCurrent]"
+                      name="RowIsCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_BOOL)("1")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_BOOL)("1")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to FudgeflixPlans\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[fudgemartg1].[DimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{AB89F3B2-6C0B-45BB-8E89-C2FD985D1C27}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_ca1_dw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].Columns[plan_id]"
+                      cachedDataType="i4"
+                      cachedName="plan_id"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_id]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].Columns[plan_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="plan_name"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_name]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].Columns[ActiveYN]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="ActiveYN"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsActive]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[ActiveYN]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].Columns[SupplierName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SupplierName"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendorName]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[SupplierName]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].Columns[Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Category"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DepartmentName]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[Category]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].Columns[Source]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Source"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceType]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[Source]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].Columns[RowIsCurrent]"
+                      cachedDataType="bool"
+                      cachedName="RowIsCurrent"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowIsCurrent]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Outputs[Derived Column Output].Columns[RowIsCurrent]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsActive]"
+                      dataType="wstr"
+                      length="1"
+                      name="IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendorName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="VendorName" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DepartmentName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DepartmentName" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceType]"
+                      dataType="wstr"
+                      length="30"
+                      name="SourceType" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowStartDate]"
+                      dataType="dbTimeStamp"
+                      name="RowStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowEndDate]"
+                      dataType="dbTimeStamp"
+                      name="RowEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowChangeReason]"
+                      dataType="wstr"
+                      length="200"
+                      name="RowChangeReason" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowIsCurrent]"
+                      dataType="bool"
+                      name="RowIsCurrent" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [fudgemartg1].[DimProduct] SET [RowIsCurrent] = ? WHERE [ProductID] = ? AND [RowIsCurrent] = '1'</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{AB89F3B2-6C0B-45BB-8E89-C2FD985D1C27}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_ca1_dw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Inputs[OLE DB Command Input].Columns[plan_id]"
+                      cachedDataType="i4"
+                      cachedName="plan_id"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_id]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Inputs[OLE DB Command Input].Columns[RowIsCurrent]"
+                      cachedDataType="bool"
+                      cachedName="RowIsCurrent"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Derived Column.Outputs[Derived Column Output].Columns[RowIsCurrent]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="bool"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="SCD - Fudgeflix Plan Update"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [DepartmentName], [IsActive], [ProductID], [ProductName], [SourceType], [VendorName],[RowIsCurrent] FROM [fudgemartg1].[DimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere">[RowIsCurrent] = '1'</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Connections[LookupConnection]"
+                  connectionManagerID="{AB89F3B2-6C0B-45BB-8E89-C2FD985D1C27}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_ca1_dw]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].Columns[Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Category"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[DepartmentName]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Category]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].Columns[ActiveYN]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="ActiveYN"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[IsActive]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[ActiveYN]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].Columns[plan_id]"
+                      cachedDataType="i4"
+                      cachedName="plan_id"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductID]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].Columns[plan_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="plan_name"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductName]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].Columns[Source]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Source"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[SourceType]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Source]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].Columns[SupplierName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SupplierName"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[VendorName]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[SupplierName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[DepartmentName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DepartmentName" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[IsActive]"
+                      dataType="wstr"
+                      length="1"
+                      name="IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[SourceType]"
+                      dataType="wstr"
+                      length="30"
+                      name="SourceType" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[VendorName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="VendorName" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input].ExternalColumns[RowIsCurrent]"
+                      dataType="bool"
+                      name="RowIsCurrent" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - stgFudgeflixPlans"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stgFudgeflixPlans]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_ca1_stage 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_ca1_stage 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].ExternalColumns[plan_id]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_id]"
+                      name="plan_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].ExternalColumns[plan_name]"
+                      length="50"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_name]"
+                      name="plan_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_price]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].ExternalColumns[plan_price]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_price]"
+                      name="plan_price"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_current]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].ExternalColumns[plan_current]"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_current]"
+                      name="plan_current"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].ExternalColumns[plan_id]"
+                      dataType="i4"
+                      name="plan_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].ExternalColumns[plan_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="plan_name" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].ExternalColumns[plan_price]"
+                      dataType="cy"
+                      name="plan_price" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].ExternalColumns[plan_current]"
+                      dataType="bool"
+                      name="plan_current" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[plan_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[plan_id]"
+                      name="plan_id" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[plan_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[plan_name]"
+                      name="plan_name" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[plan_price]"
+                      dataType="cy"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[plan_price]"
+                      name="plan_price" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[plan_current]"
+                      dataType="bool"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[plan_current]"
+                      name="plan_current" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to FudgeflixPlans\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 1].Columns[plan_id]"
+                      cachedDataType="i4"
+                      cachedName="plan_id"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 1].Columns[plan_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="plan_name"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 1].Columns[plan_price]"
+                      cachedDataType="cy"
+                      cachedName="plan_price"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_price]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_price]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 1].Columns[plan_current]"
+                      cachedDataType="bool"
+                      cachedName="plan_current"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_current]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_current]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 1].Columns[Source]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Source"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Source]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[Source]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 1].Columns[Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Category"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[Category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 1].Columns[SupplierName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SupplierName"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[SupplierName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[SupplierName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 1].Columns[ActiveYN]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="ActiveYN"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[ActiveYN]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[ActiveYN]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 2].Columns[plan_id]"
+                      cachedDataType="i4"
+                      cachedName="plan_id"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 2].Columns[plan_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="plan_name"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 2].Columns[plan_price]"
+                      cachedDataType="cy"
+                      cachedName="plan_price"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_price]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_price]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 2].Columns[plan_current]"
+                      cachedDataType="bool"
+                      cachedName="plan_current"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_current]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_current]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 2].Columns[Source]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Source"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Source]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[Source]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 2].Columns[Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Category"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[Category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 2].Columns[SupplierName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SupplierName"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[SupplierName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[SupplierName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 2].Columns[ActiveYN]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="ActiveYN"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[ActiveYN]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[ActiveYN]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_id]"
+                      name="plan_id" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_name]"
+                      name="plan_name" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_price]"
+                      dataType="cy"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_price]"
+                      name="plan_price" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_current]"
+                      dataType="bool"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[plan_current]"
+                      name="plan_current" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[Source]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[Source]"
+                      name="Source" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[Category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[Category]"
+                      name="Category" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[SupplierName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[SupplierName]"
+                      name="SupplierName" />
+                    <outputColumn
+                      refId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[ActiveYN]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1].Columns[ActiveYN]"
+                      name="ActiveYN" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Stage to FudgeflixPlans.Paths[Derived Column Output]"
+              endId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Inputs[Slowly Changing Dimension Input]"
+              name="Derived Column Output"
+              startId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Stage to FudgeflixPlans.Paths[Derived Column Output1]"
+              endId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\DF - Stage to FudgeflixPlans\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Stage to FudgeflixPlans.Paths[Derived Column Output2]"
+              endId="Package\DF - Stage to FudgeflixPlans\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Stage to FudgeflixPlans.Paths[Historical Attribute Inserts Output]"
+              endId="Package\DF - Stage to FudgeflixPlans\Derived Column.Inputs[Derived Column Input]"
+              name="Historical Attribute Inserts Output"
+              startId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Outputs[Historical Attribute Inserts Output]" />
+            <path
+              refId="Package\DF - Stage to FudgeflixPlans.Paths[New Output]"
+              endId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 1]"
+              name="New Output"
+              startId="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update.Outputs[New Output]" />
+            <path
+              refId="Package\DF - Stage to FudgeflixPlans.Paths[OLE DB Command Output]"
+              endId="Package\DF - Stage to FudgeflixPlans\Union All.Inputs[Union All Input 2]"
+              name="OLE DB Command Output"
+              startId="Package\DF - Stage to FudgeflixPlans\OLE DB Command.Outputs[OLE DB Command Output]" />
+            <path
+              refId="Package\DF - Stage to FudgeflixPlans.Paths[OLE DB Source Output]"
+              endId="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DF - Stage to FudgeflixPlans.Paths[Union All Output 1]"
+              endId="Package\DF - Stage to FudgeflixPlans\Derived Column 1.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\DF - Stage to FudgeflixPlans\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="212,42"
+          Id="Package\DF - Stage to FudgeflixPlans"
+          TopLeft="336,81" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF - Stage to FudgeflixPlans">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="162.666666666667,42"
+          Id="Package\DF - Stage to FudgeflixPlans\Derived Column 1"
+          TopLeft="305.99999769032,299.000005695224" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update"
+          TopLeft="36.5000013411045,128.90000144124" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\DF - Stage to FudgeflixPlans\OLE DB Command"
+          TopLeft="5.50000000000003,326.866668084661" />
+        <NodeLayout
+          Size="162.666666666667,42"
+          Id="Package\DF - Stage to FudgeflixPlans\Insert Destination"
+          TopLeft="542.249994169921,334.70000688076" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\DF - Stage to FudgeflixPlans\Derived Column"
+          TopLeft="18.1249999906867,203.600001929402" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans"
+          TopLeft="137.5,5.5" />
+        <NodeLayout
+          Size="206.666666666667,42"
+          Id="Package\DF - Stage to FudgeflixPlans\DC - Name,Supplier,Source"
+          TopLeft="327.124997047708,84.7500004068017" />
+        <NodeLayout
+          Size="121.333333333334,42"
+          Id="Package\DF - Stage to FudgeflixPlans\Union All"
+          TopLeft="310.749997932464,208.700005486011" />
+        <EdgeLayout
+          Id="Package\DF - Stage to FudgeflixPlans.Paths[New Output]"
+          TopLeft="176.500001341104,170.90000144124">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="194.916663258026,37.8000040447711"
+              Start="0,0"
+              End="194.916663258026,30.3000040447711">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.2898892765366" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.2898892765366"
+                    Point2="0,15.2898892765366"
+                    Point3="4,15.2898892765366" />
+                  <mssgle:LineSegment
+                    End="190.916663258026,15.2898892765366" />
+                  <mssgle:CubicBezierSegment
+                    Point1="190.916663258026,15.2898892765366"
+                    Point2="194.916663258026,15.2898892765366"
+                    Point3="194.916663258026,19.2898892765366" />
+                  <mssgle:LineSegment
+                    End="194.916663258026,30.3000040447711" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="70.3669449102631,20.2898892765366,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage to FudgeflixPlans.Paths[Historical Attribute Inserts Output]"
+          TopLeft="108.500001341104,170.90000144124">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.3750013504177,32.700000488162"
+              Start="0,0"
+              End="-13.3750013504177,25.200000488162">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.22696648959362" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.22696648959362"
+                    Point2="0,13.2269664895936"
+                    Point3="-4,13.2269664895936" />
+                  <mssgle:LineSegment
+                    End="-9.37500135041773,13.2269664895936" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.37500135041773,13.2269664895936"
+                    Point2="-13.3750013504177,13.2269664895936"
+                    Point3="-13.3750013504177,17.2269664895936" />
+                  <mssgle:LineSegment
+                    End="-13.3750013504177,25.200000488162" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-81.7438873939589,18.2269664895936,150.1127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage to FudgeflixPlans.Paths[Derived Column Output2]"
+          TopLeft="468.666664356987,320.000005695224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.5833298129344,35.7000011855365"
+              Start="0,0"
+              End="66.0833298129344,35.7000011855365">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.7916649064672,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.7916649064672,0"
+                    Point2="36.7916649064672,0"
+                    Point3="36.7916649064672,4" />
+                  <mssgle:LineSegment
+                    End="36.7916649064672,31.7000011855365" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.7916649064672,31.7000011855365"
+                    Point2="36.7916649064672,35.7000011855365"
+                    Point3="40.7916649064672,35.7000011855365" />
+                  <mssgle:LineSegment
+                    End="66.0833298129344,35.7000011855365" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage to FudgeflixPlans.Paths[Derived Column Output1]"
+          TopLeft="91.8124999953434,245.600001929402">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81.2666661552588"
+              Start="0,0"
+              End="0,73.7666661552588">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.7666661552588" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage to FudgeflixPlans.Paths[Derived Column Output]"
+          TopLeft="327.124997047708,105.750000406802">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-78.624995706603,44.1500010344386"
+              Start="0,0"
+              End="-71.124995706603,44.1500010344386">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-35.3124978533015,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-35.3124978533015,0"
+                    Point2="-39.3124978533015,0"
+                    Point3="-39.3124978533015,4" />
+                  <mssgle:LineSegment
+                    End="-39.3124978533015,40.1500010344386" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-39.3124978533015,40.1500010344386"
+                    Point2="-39.3124978533015,44.1500010344386"
+                    Point3="-43.3124978533015,44.1500010344386" />
+                  <mssgle:LineSegment
+                    End="-71.124995706603,44.1500010344386" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage to FudgeflixPlans.Paths[Union All Output 1]"
+          TopLeft="388.819442255836,250.700005486011">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.3000002092122"
+              Start="0,0"
+              End="0,40.8000002092122">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.8000002092122" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage to FudgeflixPlans.Paths[OLE DB Source Output]"
+          TopLeft="232.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="197.958330381041,37.2500004068017"
+              Start="0,0"
+              End="197.958330381041,29.7500004068017">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.6250002034009" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.6250002034009"
+                    Point2="0,18.6250002034009"
+                    Point3="4,18.6250002034009" />
+                  <mssgle:LineSegment
+                    End="193.958330381041,18.6250002034009" />
+                  <mssgle:CubicBezierSegment
+                    Point1="193.958330381041,18.6250002034009"
+                    Point2="197.958330381041,18.6250002034009"
+                    Point3="197.958330381041,22.6250002034009" />
+                  <mssgle:LineSegment
+                    End="197.958330381041,29.7500004068017" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage to FudgeflixPlans.Paths[OLE DB Command Output]"
+          TopLeft="114.833333333333,326.866668084661">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="237.694442376908,-76.1666625986497"
+              Start="0,0"
+              End="237.694442376908,-68.6666625986497">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-33.9191050524912" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-33.9191050524912"
+                    Point2="0,-37.9191050524912"
+                    Point3="4,-37.9191050524912" />
+                  <mssgle:LineSegment
+                    End="233.694442376908,-37.9191050524912" />
+                  <mssgle:CubicBezierSegment
+                    Point1="233.694442376908,-37.9191050524912"
+                    Point2="237.694442376908,-37.9191050524912"
+                    Point3="237.694442376908,-41.9191050524912" />
+                  <mssgle:LineSegment
+                    End="237.694442376908,-68.6666625986497" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage to FudgeflixPlans\SCD - Fudgeflix Plan Update">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{AB89F3B2-6C0B-45BB-8E89-C2FD985D1C27}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[fudgemartg1].[DimProduct]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Category]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;DepartmentName&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[ActiveYN]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;IsActive&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_id]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ProductID&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;SRC - stgFudgeflixPlans.Outputs[OLE DB Source Output].Columns[plan_name]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ProductName&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[Source]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;SourceType&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;DC - Name,Supplier,Source.Outputs[Derived Column Output].Columns[SupplierName]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;VendorName&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;true&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn&gt;RowIsCurrent&lt;/CurrentIndicatorColumn&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent&gt;1&lt;/ValueCurrent&gt;
+  &lt;ValueExpired&gt;0&lt;/ValueExpired&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage to FudgeflixPlans\SRC - stgFudgeflixPlans">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

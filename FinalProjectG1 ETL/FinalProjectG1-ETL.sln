@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1622
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "FinalProjectG1-ETL", "FinalProjectG1-ETL\FinalProjectG1-ETL.dtproj", "{1F8B8139-0FB1-4510-BCA3-7E7F902B8A4D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F8B8139-0FB1-4510-BCA3-7E7F902B8A4D}.Development|Default.ActiveCfg = Development
+		{1F8B8139-0FB1-4510-BCA3-7E7F902B8A4D}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D5C3A47-E68E-49ED-BAB2-C7C6CC904127}
+	EndGlobalSection
+EndGlobal
